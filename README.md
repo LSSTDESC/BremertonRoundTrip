@@ -14,4 +14,4 @@ the literature and figuring out how to connect them together.  The results will 
 at least, and the process should help reveal where more effort is most needed to get scientifically useful results.
 
 ![round-trip flowchart]
-(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png)
+(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)
