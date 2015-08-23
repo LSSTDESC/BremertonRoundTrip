@@ -1,0 +1,38 @@
+# Identify this file
+extraid 1
+
+# Use a simple Gaussian PSF
+toypsf 0.7
+
+# Make photons convert immediately
+# photoelectric 0
+# deadlayer 0
+
+# Set pixel parameters
+saturation 0
+
+# Set sky background options
+# Default: zenith_v = 22.08;
+# Used as: darksky_magnitude = -2.5*log10(darksky_like_photon_count+pow(10.0, -0.4*zenith_v));
+# For no background:
+zenith_v 1000.0
+# For quickbackground:
+#backalpha 0.1
+#backbeta 4.0
+#backgamma 1000.0
+#backdelta 1.0
+#activebuffer 600
+
+# Cosmic Ray Rate
+raydensity 0.0
+
+# Turn off other effects
+diffractionmode 0
+lascatprob 0.0
+atmosphericdispersion 0
+
+clearclouds
+clearperturbations
+clearopacity
+clearturbulence
+cleartracking
