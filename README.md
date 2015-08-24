@@ -77,3 +77,20 @@ To generate per object file with some header, run something like
 ./test/driver.py --fast --phosim test%04d.txt --phosim_many --phosim_header=thead
 ```
 This will, not surprisingly, create test0000.txt ... test0001.txt.
+
+## Generating HDF5 files
+
+You can store result of a file into a HDF5 format. E.g 
+
+```
+> test/driver.py --fast --phosim test.txt
+```
+
+can be done as two steps with an intermediate h5 files as
+
+```
+test/driver.py --fast -h5write test.h5
+test/driver.py --h5read test.h5 --phosim test.txt
+```
+
+The HDF5 has one dataset which contains the structure python array.
