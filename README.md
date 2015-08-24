@@ -22,9 +22,9 @@ We had a brief meeting as a group (Kirkby, Slosar, Walter, Burchat, Meyers, Rood
 ![round-trip flowchart]
 (https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder-annotated.png?raw=true)
 
-## Generating self-conistent 3D delta fields and shear potentials
+## Generating self-consistent 3D delta fields and shear potentials
 
-See the evolving examples in [this ipython notebook](...).
+See the evolving examples in [this ipython notebook](https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/notebooks/GaussianRandomFieldGeneration.ipynb).
 
 ## Generating galaxies
 
@@ -88,7 +88,7 @@ To generate per object file with some header, run something like
 ```
 This will, not surprisingly, create test0000.txt ... test0001.txt.
 
-## Generating HDF5 files
+### Generating HDF5 files
 
 You can store result of a file into a HDF5 format. E.g 
 
