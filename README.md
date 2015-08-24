@@ -93,4 +93,4 @@ test/driver.py --fast -h5write test.h5
 test/driver.py --h5read test.h5 --phosim test.txt
 ```
 
-The HDF5 has one dataset which contains the structure python array.
+The HDF5 has one dataset which contains the structured python array.
