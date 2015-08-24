@@ -13,16 +13,26 @@ Many of necessary pieces already exist so much of the work will involve selectin
 the literature and figuring out how to connect them together.  The results will hopefully have some pedagogical value,
 at least, and the process should help reveal where more effort is most needed to get scientifically useful results.
 
-![round-trip flowchart]
-(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)
+Our initial goal is to build a functional complete round trip rather than designing a software framework.  With this in mind, we are aiming for a set of reproducible recipes for performing each step and transfering data between them.
 
-# Generating galaxies
+## Update for the 24-Aug-2015 WL telecon
+
+We had a brief meeting as a group (Kirkby, Slosar, Walter, Burchat, Meyers, Roodman, Boutingy) on Wednesday evening and came up with the partition shown below (the original un-annotated diagram is [here](https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)). We did not have time for any further meetings and our subsequent progress is documented in our issues.
+
+![round-trip flowchart]
+(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder-annotated.png?raw=true)
+
+## Generating self-conistent 3D delta fields and shear potentials
+
+See the evolving examples in [this ipython notebook](...).
+
+## Generating galaxies
 
 Prerequisites: randomfield (dkirkby/randomfield), fastcat (slosar/fastcat)
 
 See fastcat doc for what are the limitations of this approach
 
-## Generating phosim input catalogs
+### Generating phosim input catalogs
 
 Use the generic driver in the fastcat.py
 
