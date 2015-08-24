@@ -1,0 +1,28 @@
+Unrefracted_RA_deg 0
+Unrefracted_Dec_deg 0
+Unrefracted_Azimuth 0
+Unrefracted_Altitude 89
+Slalib_date 1994/7/19/0.298822999997
+Opsim_rotskypos 0
+Opsim_rottelpos 0
+Opsim_moondec -90
+Opsim_moonra 180
+Opsim_expmjd 49552.3
+Opsim_moonalt -90
+Opsim_sunalt -90
+Opsim_filter 2
+Opsim_dist2moon 180.0
+Opsim_moonphase 10.0
+Opsim_obshistid 99999999
+Opsim_rawseeing 0.67
+SIM_SEED     1000
+SIM_MINSOURCE 1
+SIM_TELCONFIG 0
+SIM_CAMCONFIG 1
+SIM_VISTIME 15.0
+SIM_NSNAP 1
+# This is a comment
+object 0 0.0 0.0 20 ../sky/sed_flat.txt 0 0 0 0 4.848e-7 4.848e-7 star none none
+# object 0 -1.36113566192 -0.21459901055 18.1628144265 ../sky/sed_flat.txt 1.52088696682 0.0 0.0 0.0 0.0 0.0 sersic2D 1.97212778015 2.02826613989 -29.1374044378 1
+# object 0 0.0 0.0 18.1628144265 ../sky/sed_flat.txt 0.0 0.0 0.0 0.0 0.0 0.0 star none none
+
