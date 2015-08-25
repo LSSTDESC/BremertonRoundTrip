@@ -90,7 +90,7 @@ This will, not surprisingly, create test0000.txt ... test0001.txt.
 
 ### Generating HDF5 files
 
-You can store result of a file into a HDF5 format. E.g 
+You can store result of a file into a HDF5 format. E.g
 
 ```
 > test/driver.py --fast --phosim test.txt
@@ -104,3 +104,29 @@ test/driver.py --h5read test.h5 --phosim test.txt
 ```
 
 The HDF5 has one dataset which contains the structure python array.
+
+## Drawing galaxies with GalSim
+
+The galsim/postageStamp.py script will take a fastcat hdf5 output file as its input, and draw
+postage stamp images into `galsim/out/gal0.fits`, `galsim/out/gal1.fits`, etc.  These are assumed to
+be full-depth (180 visits) stacks in r-band.   The galaxy profile is exponential fixed at 0.3
+arcseconds half light radius.  There are also options to specify the (Gaussian) PSF and postage
+stampe size:
+
+```
+python galsim/postageStamp.py --help
+usage: postageStamp.py [-h] [--nx NX] [--PSF_FWHM PSF_FWHM] [--PSF_e1 PSF_E1]
+                       [--PSF_e2 PSF_E2] [--outdir OUTDIR]
+                       h5read
+
+positional arguments:
+  h5read               Fastcat hdf5 input file.
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --nx NX              Postage stamp size in pixels.
+  --PSF_FWHM PSF_FWHM  PSF FWHM in arcsec (default 0.7)
+  --PSF_e1 PSF_E1      PSF e1 (default 0.0)
+  --PSF_e2 PSF_E2      PSF e2 (default 0.0)
+  --outdir OUTDIR      Output directory (default 'out/')
+```
