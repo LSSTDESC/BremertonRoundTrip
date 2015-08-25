@@ -13,16 +13,26 @@ Many of necessary pieces already exist so much of the work will involve selectin
 the literature and figuring out how to connect them together.  The results will hopefully have some pedagogical value,
 at least, and the process should help reveal where more effort is most needed to get scientifically useful results.
 
-![round-trip flowchart]
-(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)
+Our initial goal is to build a functional complete round trip rather than designing a software framework.  With this in mind, we are aiming for a set of reproducible recipes for performing each step and transfering data between them.
 
-# Generating galaxies
+## Update for the 24-Aug-2015 WL telecon
+
+We had a brief meeting as a group (Kirkby, Slosar, Walter, Burchat, Meyers, Roodman, Boutingy) on Wednesday evening and came up with the partition shown below (the original un-annotated diagram is [here](https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)). We did not have time for any further meetings and our subsequent progress is documented in our issues.
+
+![round-trip flowchart]
+(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder-annotated.png?raw=true)
+
+## Generating self-consistent 3D delta fields and shear potentials
+
+See the evolving examples in [this ipython notebook](https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/notebooks/GaussianRandomFieldGeneration.ipynb).
+
+## Generating galaxies
 
 Prerequisites: randomfield (dkirkby/randomfield), fastcat (slosar/fastcat)
 
 See fastcat doc for what are the limitations of this approach
 
-## Generating phosim input catalogs
+### Generating phosim input catalogs
 
 Use the generic driver in the fastcat.py
 
@@ -78,9 +88,9 @@ To generate per object file with some header, run something like
 ```
 This will, not surprisingly, create test0000.txt ... test0001.txt.
 
-## Generating HDF5 files
+### Generating HDF5 files
 
-You can store result of a file into a HDF5 format. E.g 
+You can store result of a file into a HDF5 format. E.g
 
 ```
 > test/driver.py --fast --phosim test.txt
@@ -94,3 +104,30 @@ test/driver.py --h5read test.h5 --phosim test.txt
 ```
 
 The HDF5 has one dataset which contains the structured python array.
+
+## Drawing galaxies with GalSim
+
+The galsim/postageStamp.py script will take a fastcat hdf5 output file as its input, and draw
+postage stamp images into `galsim/out/gal0.fits`, `galsim/out/gal1.fits`, etc.  These are assumed to
+be full-depth (180 visits) stacks in r-band.   The galaxy profile is exponential fixed at 0.3
+arcseconds half light radius.  There are also options to specify the (Gaussian) PSF and postage
+stampe size:
+
+```
+python galsim/postageStamp.py --help
+usage: postageStamp.py [-h] [--nx NX] [--PSF_FWHM PSF_FWHM] [--PSF_e1 PSF_E1]
+                       [--PSF_e2 PSF_E2] [--outdir OUTDIR]
+                       h5read
+
+positional arguments:
+  h5read               Fastcat hdf5 input file.
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --nx NX              Postage stamp size in pixels.
+  --PSF_FWHM PSF_FWHM  PSF FWHM in arcsec (default 0.7)
+  --PSF_e1 PSF_E1      PSF e1 (default 0.0)
+  --PSF_e2 PSF_E2      PSF e2 (default 0.0)
+  --outdir OUTDIR      Output directory (default 'out/')
+```
+>>>>>>> 2c91004044d7be68915ee5ac89e968f6c3a61187
