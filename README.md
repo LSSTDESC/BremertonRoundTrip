@@ -58,6 +58,10 @@ Options:
                         Where to read phosim header from. Empty for no header
   --phosim_many         If true, create per obj file
   --phosim_size=value   Size in arcsec of sersic gals
+  --h5read=value        Instead of creating dataset, read it from H5
+  --h5write=value       Write to hdf5 file specified on command line
+  --treecorr=TREECORR   Set to use TreeCorr to calculate corr functions.
+                        Output to filename specified
 ```
 
 If you run it with --fast, it will set quick options: large pixels, massive smoothing, just 10 objects.
@@ -105,6 +109,27 @@ test/driver.py --h5read test.h5 --phosim test.txt
 
 The HDF5 has one dataset which contains the structured python array.
 
+## Running TreeCorr directly on fastcat catalogs
+
+TreeCorr calculation has been integrated with fastcat and driver.py
+will call treecorr directly (in prinicple, measurement can't be but back into
+a hdf5 file and read as fastcat Catalog and theen treecorr measurement done directly).
+To do that specify -treecorr on command line e.g.
+
+```
+./test/driver.py   --smooth=4 --grid_spacing=2 --deltaz=0.02 -N 10000 --treecorr tctest
+```
+
+This will produce a tctest file that will contain 12 columns:
+* nominal r (arcsec, log spaced)
+* actual r
+* density-density and error
+* shear-shear-plus and error
+* shear-shear-minus and error
+* density-shear and error
+* density-sehar imaginary and error
+
+
 ## Drawing galaxies with GalSim
 
 The galsim/postageStamp.py script will take a fastcat hdf5 output file as its input, and draw
@@ -114,7 +139,7 @@ arcseconds half light radius.  There are also options to specify the (Gaussian) 
 stampe size:
 
 ```
-python galsim/postageStamp.py --help
+> python galsim/postageStamp.py --help
 usage: postageStamp.py [-h] [--nx NX] [--PSF_FWHM PSF_FWHM] [--PSF_e1 PSF_E1]
                        [--PSF_e2 PSF_E2] [--outdir OUTDIR]
                        h5read
@@ -130,4 +155,31 @@ optional arguments:
   --PSF_e2 PSF_E2      PSF e2 (default 0.0)
   --outdir OUTDIR      Output directory (default 'out/')
 ```
->>>>>>> 2c91004044d7be68915ee5ac89e968f6c3a61187
+
+## Fitting GalSim-drawn galaxies with HSM
+
+The HSM/HSM.py script will take take postage stamp image(s) of galaxies and a single postage stamp
+image of a PSF and used these to estimate that galaxy's shape using the HSM algorithm implemented
+inside of GalSim.  This script produces a single HDF5 output catalog that includes all of the
+columns in the original fastcat catalog, as well as shape measurement columns and a crude estimated
+flux column, which is just the sum of the pixels in the (assumed background subtracted) postage
+stamp.  This won't work for phoSim-generated postage stamps at the moment, since those won't have
+the right header keywords, but I think it should be possible to fix this relatively quickly.
+
+```
+> python HSM/HSM.py --help
+usage: HSM.py [-h] [--outfile OUTFILE] psf galstr
+
+positional arguments:
+  psf                Input PSF fits file.
+  gals               Input galaxies. (Either single file, a directory, or a
+                     glob.)
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --outfile OUTFILE  Output hdf5 catalog file (default: HSMcat.h5)
+
+```
+
+
+

@@ -8,7 +8,7 @@ parser = ArgumentParser()
 parser.add_argument('h5read', type=str,
                     help="Fastcat hdf5 input file.")
 parser.add_argument('--nx', default=24, type=int,
-                    help="Postage stamp size in pixels.")
+                    help="Postage stamp size in pixels (default 24).")
 parser.add_argument('--PSF_FWHM', default=0.7, type=float,
                     help="PSF FWHM in arcsec (default 0.7)")
 parser.add_argument('--PSF_e1', default=0.0, type=float,
@@ -56,4 +56,5 @@ for i, datum in enumerate(infile['data']):
     h1['g1'] = g1
     h1['g2'] = g2
     img.header = h1
-    img.write(os.path.join(args.outdir, 'gal{0}.fits'.format(i)))
+    # future proof with 11 digit filename #
+    img.write(os.path.join(args.outdir, 'gal{0:011d}.fits'.format(i)))
