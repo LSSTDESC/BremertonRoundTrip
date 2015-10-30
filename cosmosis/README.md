@@ -5,6 +5,7 @@ Run a demo using "cosmosis modules/bremerton/bremerton.ini". Sampler can be spec
 Parameter ranges are specified in "bremerton/bremerton_values.ini"
 
 
-Needs xi_bins.dat
-covariance_matrix.dat
-combined_nz.txt
+Needs 
+1) xi_bins.dat from TreeCorr/Athena
+2) covariance_matrix.dat from Athena?
+3) nz.txt
