@@ -15,6 +15,25 @@ at least, and the process should help reveal where more effort is most needed to
 
 Our initial goal is to build a functional complete round trip rather than designing a software framework.  With this in mind, we are aiming for a set of reproducible recipes for performing each step and transfering data between them.
 
+## Update for LSS WG
+
+Here is the LSS version of the original plot (see below)
+![round-trip flowchart-lss]
+(https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder_LSS.png?raw=true)
+
+Different shaded boxes correspond to roughly independent pieces of analysis.
+Blue lines show plausible shortcuts
+Possible loops:
+ * Create true power spectrum, fisher version of "estimated power spectrum",  fit cosmo
+ * Create lognormal distribution of density fields, populate with galaxies, measure Cls, fit cosmo
+ * Create lognormal distribution of density fields, populate with galaxies, add PZ errors, catastrophic outliers, mistyped stars, measure Cls, fit cosmo
+ * Create lognormal distribution of density fields, populate with galaxies, realize on chips, deblend, measure fluxes, get PZ, measure Cls, fit cosmo
+ * Create realistic distribution of density fields, populate with galaxies, realize on chips, deblend, measure fluxes, get PZ, measure Cls, fit cosmo
+
+Many versions of this will need to be done before we call it a day. Gaussian/lognormal fields should go a long way in testing
+many features of the code.
+
+
 ## Update for the 24-Aug-2015 WL telecon
 
 We had a brief meeting as a group (Kirkby, Slosar, Walter, Burchat, Meyers, Roodman, Boutingy) on Wednesday evening and came up with the partition shown below (the original un-annotated diagram is [here](https://github.com/DarkEnergyScienceCollaboration/BremertonRoundTrip/blob/master/images/Ladder.png?raw=true)). We did not have time for any further meetings and our subsequent progress is documented in our issues.
